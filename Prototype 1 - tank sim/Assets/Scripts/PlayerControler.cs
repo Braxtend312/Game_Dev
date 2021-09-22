@@ -5,16 +5,16 @@ using UnityEngine;
 public class PlayerControler : MonoBehaviour
 {
    public float speed = 10.01f;
-   public float turnspeed;
-   public float h1nput;
-   public float v1nput;
+   public float turnSpeed;
+   public float hInput;
+   public float vInput;
 
     // Update is called once per frame
     void Update()
     {
-        h1nput = Input.GetAxis[hoizontal];
-        h1nput = Input.GetAxis[vertical];
-        transform.Rotate(Vector3.up, turnSpeed * hIput * Time.deltaTime);
-        transform.Translate(Vector3.Forward * Speed * vIput * Time.deltaTime);
+        hInput = Input.GetAxis("Horizontal");
+        vInput = Input.GetAxis("Vertical");
+        transform.Rotate(Vector3.up, turnSpeed * hInput * Time.deltaTime);
+        transform.Translate(Vector3.forward * speed * vInput * Time.deltaTime);
     }
 }

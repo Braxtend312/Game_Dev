@@ -5,12 +5,12 @@ using UnityEngine;
 public class camerafollow : MonoBehaviour
 {
   public GameObject tank;
-  private Vector3 offset = new Vector3(0,25,-50);
+  private Vector3 offset = new Vector3(0,7,-20);
 
 
     // Update is called once per frame
     void Update()
     {
-     transform.position = tank.transform.position * offset;   
+     transform.position = tank.transform.position + offset;   
     }
 }
