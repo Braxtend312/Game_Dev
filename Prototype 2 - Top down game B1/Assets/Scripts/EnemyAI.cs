@@ -15,4 +15,13 @@ public class EnemyAI : MonoBehaviour
     {
         
     }
+
+    void OnTriggerEnter2D(Collider2D other);
+    {
+        if(Other.gameobject.CompareTag("Projectile"))
+        {
+            Destroy(gameobject);
+        }
+    }
 }
+
