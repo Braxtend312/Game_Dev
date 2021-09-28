@@ -166,7 +166,6 @@ GameObject:
   - component: {fileID: 299478950}
   - component: {fileID: 299478949}
   - component: {fileID: 299478953}
-  - component: {fileID: 299478954}
   m_Layer: 0
   m_Name: eneme
   m_TagString: Untagged
@@ -298,18 +297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eaa578c33edd4b52ae320eb6d66a781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &299478954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 299478948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eaa578c33edd4b52ae320eb6d66a781, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  moveSpeed: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,7 +508,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1144979915}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.03, y: 1.9, z: 0}
+  m_LocalPosition: {x: 0.79, y: 2.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 147235032}
@@ -543,7 +532,7 @@ MonoBehaviour:
   xRange: 10.5
   yRange: 4.5
   projectile: {fileID: 0}
-  firepoint: {fileID: 0}
+  FirePoint: {fileID: 0}
 --- !u!1001 &3472647567345002154
 PrefabInstance:
   m_ObjectHideFlags: 0
