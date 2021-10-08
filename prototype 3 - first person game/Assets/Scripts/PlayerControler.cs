@@ -15,25 +15,54 @@ public class PlayerControler : MonoBehaviour
 
     // components 
     private Camera cam;
-    private RigidBody rb;
+    private Rigidbody rb;
 
-    void Awakee()
+    void Awake()
     {
         // get components
-        cam = Cmer.main;
-        rb = GetComponent<RigidBody>();
+        cam = Camera.main;
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
+        CamLook();
+        if(Input.GetButtonDown("Jump"))
+            Jump();
     }
+
     void Move()
-    {
+    { // get keyboard input with move speed
         float x = Input.GetAxis("Horizontal") * moveSpeed;
         float z = Input.GetAxis("Vertical") * moveSpeed;
+        // applying movement to the Rigidbody
+        Vector3 dir = transform.right * x + transform.forward * z;
+        //jump diretion
+        dir = rb.velocity.y;
+        //apply direction to camera mivement
+        rb.velocity = dir;
+    }
+    void Jump()
+    {
+       //cast ray to gound
+        Ray ray = new Ray(transform.position, Vector3.down);
+        // check Ray length to jump
+        if(Physics.Raycast(ray, 1.1f))
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+    }
+    void CamLook()
+    { // get mouse input so we can look around with the mouse
+        float y = Input.GetAxis("Mouse X") * lookSensitivity;
+        rotX += Input.GetAxis("Mouse Y") * lookSensitivity;
 
-        rb.velocity = new Vector3(x, rb.velocity.y, z);
+        // Restrict the verticle rotation of the camera
+        rotX = Mathf.Clamp(rotX, minLookX, maxLookX);
+
+        // applying the rotation to camera
+        cam.transform.localRotation = Quaternion.Euler(-rotX, 0, 0);
+        transform.eulerAngles += Vector3.up * y;
+
     }
 }
