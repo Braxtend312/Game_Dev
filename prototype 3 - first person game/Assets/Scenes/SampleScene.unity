@@ -708,6 +708,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fea2d48e70544fd6bf0f1af3a28562e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
+  jumpForce: 5
+  lookSensitivity: 5
+  maxLookX: 90
+  minLookX: -90
 --- !u!54 &731697203
 Rigidbody:
   m_ObjectHideFlags: 0

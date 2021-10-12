@@ -34,13 +34,14 @@ public class PlayerControler : MonoBehaviour
     }
 
     void Move()
-    { // get keyboard input with move speed
+    { 
+        // get keyboard input with move speed
         float x = Input.GetAxis("Horizontal") * moveSpeed;
         float z = Input.GetAxis("Vertical") * moveSpeed;
         // applying movement to the Rigidbody
         Vector3 dir = transform.right * x + transform.forward * z;
         //jump diretion
-        dir = rb.velocity.y;
+        dir.y = rb.velocity.y;
         //apply direction to camera mivement
         rb.velocity = dir;
     }
