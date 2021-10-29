@@ -49,6 +49,6 @@ public class Weapon : MonoBehaviour
         bullet.transform.position = muzzle.position;
         bullet.transform.rotation = muzzle.rotation;        
         // set velocity of bullet
-        Bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * bulletSpeed;
+        bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * bulletSpeed;
     }
 }

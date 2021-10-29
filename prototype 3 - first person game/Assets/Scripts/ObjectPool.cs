@@ -41,7 +41,7 @@ public class ObjectPool : MonoBehaviour
         {
             obj = CreateNewObject();
         }
-        obj.SetActivate(true);
+        obj.SetActive(true);
 
         return obj;
     }
