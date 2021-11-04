@@ -26,6 +26,10 @@ public class Enemy : MonoBehaviour
         //gather components 
         weapon = GetComponent<Weapon>();
         target = FindObjectOfType<PlayerControler>().GameObject;
+
+        InvokeRepeating("UpdatePath", 0.0f, 0.5f);
+
+        curHP = maxHP;
     }
 
     void UpdatePath()
@@ -51,9 +55,38 @@ public class Enemy : MonoBehaviour
             path.RemoveAt(0);
     }
 
+
+    public void TakeDamage(int damage)
+    {
+        curHP -= damage;
+
+        if(curHP <= 0)
+            Die();
+    }
+
+    void Die()
+    {
+        Destroy(GameObject);
+    }
     // Update is called once per frame
     void Update()
     {
-        
+        Vector3 dir = (target.transform.position - transform.position).normalized;
+        float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+
+        transform.eulerAngles = Vector3.up * angle;
+
+        float dist = Vector3.Distance(transform.position, target.transform.position);
+        if(dist <= attackRange)
+        {
+            if(Weapon.CanShoot())
+                weapon.Shoot();     
+        }
+    
+        else
+        {
+            ChaseTarget();
+        }
     }
+
 }

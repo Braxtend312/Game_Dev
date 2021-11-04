@@ -20,6 +20,10 @@ public class Weapon : MonoBehaviour
 
     void Awake()
     {
+        // lock cursor
+        Cursor.lockState = CursorLockMode.Locked;
+
+       
         // are we attached to the player
         if(GetComponent<PlayerControler>())
         {
