@@ -14,45 +14,55 @@ public class Weapon : MonoBehaviour
     public float bulletSpeed;
 
     public float shootRate;
-    public float lastShootTime;
+
+    private float lastShootTime;
     private bool isPlayer;
-    
+
 
     void Awake()
     {
-        // lock cursor
+        // Disable cursor
         Cursor.lockState = CursorLockMode.Locked;
 
-       
-        // are we attached to the player
-        if(GetComponent<PlayerControler>())
-        {
+        if(GetComponent<PlayerController>())
             isPlayer = true;
-        }
     }
-    // can we shoot a bullet
+
     public bool CanShoot()
     {
-        if(Time.time-lastShootTime >= shootRate)
-        {
-            if(curAmmo > 0 || infiniteAmmo == true)
-            {
-                return true;
-            }
-        }
-        return false;
+      if(Time.time - lastShootTime >= shootRate)
+      {
+           if(curAmmo > 0 || infiniteAmmo == true)
+            return true;
+      }  
+
+      return false;
+       
     }
 
     public void Shoot()
     {
-        // adjst shoot time and reduce ammo by one
-        lastShootTime = Time.time;
-        curAmmo --; 
-// creat projectle
-        GameObject bullet = bulletPool.GetObject();
-        bullet.transform.position = muzzle.position;
-        bullet.transform.rotation = muzzle.rotation;        
-        // set velocity of bullet
-        bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * bulletSpeed;
+       // Cooldown for shooting
+       lastShootTime = Time.time;
+       curAmmo--; 
+        // Creating an instance of the bullet prefab at muzzles position and rotation
+       GameObject bullet = bulletPool.GetObject(); 
+       bullet.transform.position = muzzle.position;
+       bullet.transform.rotation = muzzle.rotation;
+
+    //add velocity to projectile
+       bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * bulletSpeed;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }

@@ -4,50 +4,44 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    // what game object is pooled
+
     public GameObject objPrefab;
-    // How many game objects to pool
-    public int createdOnStart;
+    public int createOnStart;
 
     private List<GameObject> pooledObjs = new List<GameObject>();
-
-
 
     // Start is called before the first frame update
     void Start()
     {
-        for(int x = 0; x < createdOnStart; x++)
+        for(int x = 0; x < createOnStart; x++)
         {
-            CreateNewObject();
-        }
+            CreateNewObject();   
+        }   
     }
     
     GameObject CreateNewObject()
     {
-        //crea game object
         GameObject obj = Instantiate(objPrefab);
-        // deactivate game object
-         obj.SetActive(false);
+        obj.SetActive(false);
         pooledObjs.Add(obj);
 
         return obj;
     }
-
+    // Whenever we need an object call this function
     public GameObject GetObject()
     {
+        // Collect all of inactive objects
         GameObject obj = pooledObjs.Find(x => x.activeInHierarchy == false);
 
+        //If the scene has no active objects
         if(obj == null)
         {
             obj = CreateNewObject();
         }
+
+        //activate created objects
         obj.SetActive(true);
 
         return obj;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    }    
 }
